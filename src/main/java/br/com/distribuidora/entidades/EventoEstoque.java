@@ -3,8 +3,6 @@ package br.com.distribuidora.entidades;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
 /**
@@ -12,7 +10,6 @@ import javax.persistence.ManyToOne;
  * @modified Luan
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 public class EventoEstoque extends Evento {
     
     private ItemEstoque item;

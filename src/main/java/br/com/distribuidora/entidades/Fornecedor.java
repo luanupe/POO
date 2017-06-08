@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.distribuidora.entidades;
 
 
@@ -20,12 +16,17 @@ import javax.persistence.Id;
  */
 @Entity
 public class Fornecedor implements Serializable{
+    
     private Long id;
     private String nome;
     private String cnpj;
     private String email;
     private String telefone;
     private String endereco;
+    
+    public Fornecedor(){
+        
+    }
     
     public Fornecedor(String nome,String cnpj, String email,String endereco, String telefone){
         this.nome=nome;

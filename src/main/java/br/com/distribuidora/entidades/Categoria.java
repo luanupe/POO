@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.distribuidora.entidades;
 
 
@@ -27,13 +23,14 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Categoria implements Serializable{
+    
     private Long id;
     private String nome;
     private List<Produto> produtos;
     private int quant;
 
  public Categoria(){
-    this.produtos= new ArrayList<Produto>();
+    
 }
     
     public Categoria(String nome, List<Produto> produtos, int quant) {

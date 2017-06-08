@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.distribuidora.entidades;
 
 
@@ -29,6 +25,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 public class Usuario implements Serializable{
+    
     private Long id;
     private String nome;
     private String cpf;
@@ -38,11 +35,10 @@ public class Usuario implements Serializable{
     private String funcao;
     private Float salario;
     private List<Venda> vendas;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dataAdmissao;
     
     public Usuario(){
-        this.vendas=new ArrayList<Venda>();
+        
        
     }
 
@@ -196,6 +192,7 @@ public class Usuario implements Serializable{
         this.vendas = vendas;
     }
     
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     public Date getDataAdmissao() {
         return dataAdmissao;

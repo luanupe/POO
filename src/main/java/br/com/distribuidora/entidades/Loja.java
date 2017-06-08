@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.distribuidora.entidades;
 
 
@@ -39,9 +35,7 @@ public class Loja implements Serializable{
     private List<Usuario> usuarios;
     
     public Loja(){
-        this.estoque=new ArrayList<ItemEstoque>();
-        this.vendas=new ArrayList<Venda> ();
-        this.usuarios=new ArrayList<Usuario> ();
+        
         
     }
 
@@ -115,7 +109,7 @@ public class Loja implements Serializable{
         return "Loja{" + "id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", cnpj=" + cnpj + ", telefone=" + telefone + ", email=" + email + ", estoque=" + estoque + ", vendas=" + vendas + ", usuarios=" + usuarios + '}';
     }
 
-    @Id
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;

@@ -1,4 +1,7 @@
+
 package br.com.distribuidora.entidades;
+
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,20 +19,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
-
 /**
  *
  * @author Patricia
  */
 @Entity
-public class Venda implements Serializable {
+public class Venda implements Serializable{
     
     private Long id;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dataVenda;
     private String tipoPagamento;
     private Float valor;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dataEntrega;
     private Usuario usuario;
     private Cliente cliente;
@@ -37,19 +37,19 @@ public class Venda implements Serializable {
     
        
     
-    public Venda()  {
-        this.produtos = new ArrayList<Produto>();
-    }
+  public Venda()  {
+      
+  }
 
-    public Venda(Date dataVenda,String tipoPagamento, Float valor, Date dataEntrega, Usuario usuario, Cliente cliente, List<Produto> produtos ){
-        this.dataVenda=dataVenda;
-        this.tipoPagamento=tipoPagamento;
-        this.valor=valor;
-        this.dataEntrega=dataEntrega;
-        this.usuario=usuario;
-        this.cliente=cliente;
-        this.produtos=produtos;
-    }
+ public Venda(Date dataVenda,String tipoPagamento, Float valor, Date dataEntrega, Usuario usuario, Cliente cliente, List<Produto> produtos ){
+     this.dataVenda=dataVenda;
+     this.tipoPagamento=tipoPagamento;
+     this.valor=valor;
+     this.dataEntrega=dataEntrega;
+     this.usuario=usuario;
+     this.cliente=cliente;
+     this.produtos=produtos;
+ }   
 
     @Override
     public int hashCode() {
@@ -115,7 +115,8 @@ public class Venda implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
+    
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     public Date getDataVenda() {
         return dataVenda;
@@ -141,6 +142,7 @@ public class Venda implements Serializable {
         this.valor = valor;
     }
 
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     public Date getDataEntrega() {
         return dataEntrega;
