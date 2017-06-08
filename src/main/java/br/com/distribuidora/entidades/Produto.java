@@ -41,10 +41,11 @@ public class Produto implements Serializable{
         this.fornecedores = new ArrayList<Fornecedor>();
     }
     
-    public Produto(String nome, String marca, Float pesoMl, Date validade, Date fabricacao, String caracteristicas, String codigoBarra, List<Fornecedor> fornecedores){
+    public Produto(String nome, String marca, Float pesoMl, Float preco, Date validade, Date fabricacao, String caracteristicas, String codigoBarra, List<Fornecedor> fornecedores){
         this.nome=nome;
         this.marca=marca;
         this.pesoMl=pesoMl;
+        this.preco=preco;
         this.validade=validade;
         this.fabricacao=fabricacao;
         this.caracteristicas=caracteristicas;
@@ -60,6 +61,7 @@ public class Produto implements Serializable{
         hash = 67 * hash + Objects.hashCode(this.nome);
         hash = 67 * hash + Objects.hashCode(this.marca);
         hash = 67 * hash + Objects.hashCode(this.pesoMl);
+        hash = 67 * hash + Objects.hashCode(this.preco);
         hash = 67 * hash + Objects.hashCode(this.validade);
         hash = 67 * hash + Objects.hashCode(this.fabricacao);
         hash = 67 * hash + Objects.hashCode(this.caracteristicas);
@@ -89,6 +91,9 @@ public class Produto implements Serializable{
         if (!Objects.equals(this.pesoMl, other.pesoMl)) {
             return false;
         }
+        if (!Objects.equals(this.preco, other.preco)) {
+            return false;
+        }
         if (!Objects.equals(this.validade, other.validade)) {
             return false;
         }
@@ -109,7 +114,7 @@ public class Produto implements Serializable{
 
     @Override
     public String toString() {
-        return "Produto{" + "id=" + id + ", nome=" + nome + ", marca=" + marca + ", pesoMl=" + pesoMl + ", validade=" + validade + ", fabricacao=" + fabricacao + ", caracteristicas=" + caracteristicas + ", codigoBarra=" + codigoBarra + ", fornecedores=" + fornecedores + '}';
+        return "Produto{" + "id=" + id + ", nome=" + nome + ", marca=" + marca + ", pesoMl=" + pesoMl + ", preco=" + preco + ", validade=" + validade + ", fabricacao=" + fabricacao + ", caracteristicas=" + caracteristicas + ", codigoBarra=" + codigoBarra + ", fornecedores=" + fornecedores + '}';
     }
 
     

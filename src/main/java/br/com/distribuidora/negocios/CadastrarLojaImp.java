@@ -5,6 +5,7 @@ import br.com.distribuidora.entidades.ItemEstoque;
 import br.com.distribuidora.entidades.Loja;
 import br.com.distribuidora.entidades.Produto;
 import br.com.distribuidora.entidades.Venda;
+import br.com.distribuidora.persistencia.RepositorioCliente;
 import br.com.distribuidora.persistencia.RepositorioLoja;
 import br.com.distribuidora.persistencia.RepositorioUsuario;
 import br.com.distribuidora.persistencia.RepositorioVenda;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  *
  * @author Patricia
+ * @modified Luan
  */
 @Service
 public class CadastrarLojaImp implements CadastrarLoja {
@@ -32,6 +34,9 @@ public class CadastrarLojaImp implements CadastrarLoja {
 
     @Autowired
     private RepositorioUsuario repositorioUsuario;
+
+    @Autowired
+    private RepositorioCliente repositorioCliente;
 
     @Override
     @Transactional(rollbackFor = LojaExistenteException.class)
@@ -83,6 +88,7 @@ public class CadastrarLojaImp implements CadastrarLoja {
     }
  
     @Override
+    @Transactional(rollbackFor = VendaException.class)
     public void vender(Loja loja, Venda venda) throws VendaException {
         try {
             for (Produto produto : venda.getProdutos()) {
@@ -99,7 +105,11 @@ public class CadastrarLojaImp implements CadastrarLoja {
             
             // Persiste venda
             this.repositorioVenda.save(venda);
-            
+
+            // Persiste cliente
+            venda.getCliente().getVendas().add(venda);
+            this.repositorioCliente.save(venda.getCliente());
+
             // Persiste usuário
             venda.getUsuario().getVendas().add(venda);
             this.repositorioUsuario.save(venda.getUsuario());

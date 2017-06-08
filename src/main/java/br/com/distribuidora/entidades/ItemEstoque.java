@@ -21,6 +21,7 @@ import javax.persistence.OneToOne;
 /**
  *
  * @author Patricia
+ * @modified Luan
  */
 @Entity
 public class ItemEstoque implements Serializable{
@@ -31,7 +32,7 @@ public class ItemEstoque implements Serializable{
     private List<EventoEstoque> eventos;
     
     public ItemEstoque(){
-      
+      this.eventos = new ArrayList<EventoEstoque>();
     }
     
     public ItemEstoque(Float quant, List<EventoEstoque> eventos, Produto produto){

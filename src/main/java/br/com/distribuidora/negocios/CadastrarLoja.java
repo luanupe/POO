@@ -8,6 +8,7 @@ import java.io.Serializable;
 /**
  *
  * @author Patricia
+ * @modified Luan
  */
 public interface CadastrarLoja extends Serializable {
     

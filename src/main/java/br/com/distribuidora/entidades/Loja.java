@@ -1,7 +1,4 @@
-
 package br.com.distribuidora.entidades;
-
-
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,6 +17,7 @@ import javax.persistence.OneToMany;
 /**
  *
  * @author Patricia
+ * @modified Luan
  */
 @Entity
 public class Loja implements Serializable{
@@ -36,7 +34,8 @@ public class Loja implements Serializable{
     
     public Loja() {
         this.estoque = new ArrayList<ItemEstoque>();
-        // ...
+        this.vendas = new ArrayList<Venda>();
+        this.usuarios = new ArrayList<Usuario>();
     }
 
     public Loja(String nome, String endereco, String cnpj, String telefone, String email, List<ItemEstoque> estoque, List<Venda> vendas, List<Usuario> usuarios){

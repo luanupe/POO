@@ -22,6 +22,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  *
  * @author Patricia
+ * @modified Luan
  */
 @Entity
 public class Venda implements Serializable{
@@ -36,7 +37,7 @@ public class Venda implements Serializable{
     private List<Produto> produtos;
     
     public Venda()  {
-
+        this.produtos = new ArrayList<Produto>();
     }
 
     public Venda(Date dataVenda,String tipoPagamento, Float valor, Date dataEntrega, Usuario usuario, Cliente cliente, List<Produto> produtos ){
