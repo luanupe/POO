@@ -1,7 +1,4 @@
-
 package br.com.distribuidora.entidades;
-
-
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -36,42 +33,47 @@ public class Usuario implements Serializable{
     private Float salario;
     private List<Venda> vendas;
     private Date dataAdmissao;
+    private Date dataDemissao;
     
-    public Usuario(){
+    public Usuario() {
         
-       
     }
 
-  public Usuario(String nome, String cpf, String telefone, String email, String endereco, String funcao, Float  salario, List<Venda> vendas, Date dataAdmissao){
-      this.nome=nome;
-      this.cpf=cpf;
-      this.telefone=telefone;
-      this.email=email;
-      this.endereco=endereco;
-      this.funcao=funcao;
-      this.salario=salario;
-      this.vendas=vendas;
-      this.dataAdmissao=dataAdmissao;
-  }
+    public Usuario(String nome, String cpf, String telefone, String email, String endereco, String funcao, Float  salario, List<Venda> vendas, Date dataAdmissao, Date dataDemissao){
+        this.nome=nome;
+        this.cpf=cpf;
+        this.telefone=telefone;
+        this.email=email;
+        this.endereco=endereco;
+        this.funcao=funcao;
+        this.salario=salario;
+        this.vendas=vendas;
+        this.dataAdmissao=dataAdmissao;
+        this.dataDemissao = dataDemissao;
+    }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.nome);
-        hash = 29 * hash + Objects.hashCode(this.cpf);
-        hash = 29 * hash + Objects.hashCode(this.telefone);
-        hash = 29 * hash + Objects.hashCode(this.email);
-        hash = 29 * hash + Objects.hashCode(this.endereco);
-        hash = 29 * hash + Objects.hashCode(this.funcao);
-        hash = 29 * hash + Objects.hashCode(this.salario);
-        hash = 29 * hash + Objects.hashCode(this.vendas);
-        hash = 29 * hash + Objects.hashCode(this.dataAdmissao);
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.nome);
+        hash = 89 * hash + Objects.hashCode(this.cpf);
+        hash = 89 * hash + Objects.hashCode(this.telefone);
+        hash = 89 * hash + Objects.hashCode(this.email);
+        hash = 89 * hash + Objects.hashCode(this.endereco);
+        hash = 89 * hash + Objects.hashCode(this.funcao);
+        hash = 89 * hash + Objects.hashCode(this.salario);
+        hash = 89 * hash + Objects.hashCode(this.vendas);
+        hash = 89 * hash + Objects.hashCode(this.dataAdmissao);
+        hash = 89 * hash + Objects.hashCode(this.dataDemissao);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (obj == null) {
             return false;
         }
@@ -79,9 +81,6 @@ public class Usuario implements Serializable{
             return false;
         }
         final Usuario other = (Usuario) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -100,6 +99,9 @@ public class Usuario implements Serializable{
         if (!Objects.equals(this.funcao, other.funcao)) {
             return false;
         }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         if (!Objects.equals(this.salario, other.salario)) {
             return false;
         }
@@ -109,12 +111,15 @@ public class Usuario implements Serializable{
         if (!Objects.equals(this.dataAdmissao, other.dataAdmissao)) {
             return false;
         }
+        if (!Objects.equals(this.dataDemissao, other.dataDemissao)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", email=" + email + ", endereco=" + endereco + ", funcao=" + funcao + ", salario=" + salario + ", vendas=" + vendas + ", dataAdmissao=" + dataAdmissao + '}';
+        return "Usuario{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", email=" + email + ", endereco=" + endereco + ", funcao=" + funcao + ", salario=" + salario + ", vendas=" + vendas + ", dataAdmissao=" + dataAdmissao + ", dataDemissao=" + dataDemissao + '}';
     }
 
     @Id
@@ -200,6 +205,16 @@ public class Usuario implements Serializable{
 
     public void setDataAdmissao(Date dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
+    }
+    
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
+    public Date getDataDemissao() {
+        return this.dataDemissao;
+    }
+
+    public void setDataDemissao(Date dataDemissao) {
+        this.dataDemissao = dataDemissao;
     }
     
     

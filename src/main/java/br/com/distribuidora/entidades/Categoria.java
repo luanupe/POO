@@ -1,7 +1,4 @@
-
 package br.com.distribuidora.entidades;
-
-
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,9 +26,9 @@ public class Categoria implements Serializable{
     private List<Produto> produtos;
     private int quant;
 
- public Categoria(){
-    
-}
+    public Categoria() {
+     
+    }
     
     public Categoria(String nome, List<Produto> produtos, int quant) {
         this.nome = nome;

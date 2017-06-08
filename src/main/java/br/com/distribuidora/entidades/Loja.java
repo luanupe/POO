@@ -34,8 +34,7 @@ public class Loja implements Serializable{
     private List<Venda> vendas;
     private List<Usuario> usuarios;
     
-    public Loja(){
-        
+    public Loja() {
         
     }
 

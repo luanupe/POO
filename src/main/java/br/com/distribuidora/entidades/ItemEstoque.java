@@ -27,8 +27,8 @@ public class ItemEstoque implements Serializable{
     
     private Long id;
     private Float quant;
-    private List<EventoEstoque> eventos;
     private Produto produto;
+    private List<EventoEstoque> eventos;
     
     public ItemEstoque(){
       

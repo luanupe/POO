@@ -1,14 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.distribuidora.negocios;
+
+import br.com.distribuidora.entidades.Loja;
+import br.com.distribuidora.entidades.Venda;
 
 /**
  *
  * @author Patricia
+ * @modified Luan
  */
 public class CadastrarVendaImp {
+
+    public void adicionarVenda(Venda venda, Loja loja) {
+        
+    }
     
 }
