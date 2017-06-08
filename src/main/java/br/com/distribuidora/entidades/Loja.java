@@ -35,7 +35,8 @@ public class Loja implements Serializable{
     private List<Usuario> usuarios;
     
     public Loja() {
-        
+        this.estoque = new ArrayList<ItemEstoque>();
+        // ...
     }
 
     public Loja(String nome, String endereco, String cnpj, String telefone, String email, List<ItemEstoque> estoque, List<Venda> vendas, List<Usuario> usuarios){
@@ -185,8 +186,4 @@ public class Loja implements Serializable{
         this.usuarios = usuarios;
     }
 
-    
-    
-    
-    
 }

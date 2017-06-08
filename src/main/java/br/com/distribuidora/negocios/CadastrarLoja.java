@@ -17,7 +17,7 @@ public interface CadastrarLoja extends Serializable {
     
     public Loja buscarLoja(String cnpj) throws LojaInexistenteException;
 
-    public void vender(Loja loja, Venda venda);
+    public void vender(Loja loja, Venda venda) throws VendaException;
 
    //public LojaListar buscarLoja (String cnpj) throws LojaInexistenteException;
 }

@@ -35,21 +35,19 @@ public class Venda implements Serializable{
     private Cliente cliente;
     private List<Produto> produtos;
     
-       
-    
-  public Venda()  {
-      
-  }
+    public Venda()  {
 
- public Venda(Date dataVenda,String tipoPagamento, Float valor, Date dataEntrega, Usuario usuario, Cliente cliente, List<Produto> produtos ){
-     this.dataVenda=dataVenda;
-     this.tipoPagamento=tipoPagamento;
-     this.valor=valor;
-     this.dataEntrega=dataEntrega;
-     this.usuario=usuario;
-     this.cliente=cliente;
-     this.produtos=produtos;
- }   
+    }
+
+    public Venda(Date dataVenda,String tipoPagamento, Float valor, Date dataEntrega, Usuario usuario, Cliente cliente, List<Produto> produtos ){
+       this.dataVenda=dataVenda;
+       this.tipoPagamento=tipoPagamento;
+       this.valor=valor;
+       this.dataEntrega=dataEntrega;
+       this.usuario=usuario;
+       this.cliente=cliente;
+       this.produtos=produtos;
+    } 
 
     @Override
     public int hashCode() {

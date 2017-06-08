@@ -1,10 +1,14 @@
 
 package br.com.distribuidora.negocios;
 
+import br.com.distribuidora.entidades.ItemEstoque;
 import br.com.distribuidora.entidades.Loja;
+import br.com.distribuidora.entidades.Produto;
 import br.com.distribuidora.entidades.Venda;
 import br.com.distribuidora.persistencia.RepositorioLoja;
+import br.com.distribuidora.persistencia.RepositorioUsuario;
 import br.com.distribuidora.persistencia.RepositorioVenda;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +29,9 @@ public class CadastrarLojaImp implements CadastrarLoja {
 
     @Autowired
     private RepositorioVenda repositorioVenda;
+
+    @Autowired
+    private RepositorioUsuario repositorioUsuario;
 
     @Override
     @Transactional(rollbackFor = LojaExistenteException.class)
@@ -63,11 +70,48 @@ public class CadastrarLojaImp implements CadastrarLoja {
         }
         return loja;
     }
+
+    // Validar venda
+
+    private ItemEstoque getEstoqueDoProduto(Loja loja, Produto produto) {
+        for (ItemEstoque item : loja.getEstoque()) {
+            if ((item.getProduto().equals(produto))) {
+                return item;
+            }
+        }
+        return null;
+    }
  
-    public void vender(Loja loja, Venda venda) {
-        // TODO
-        loja.getVendas().add(venda);
-        this.repositorioLoja.save(loja);
+    @Override
+    public void vender(Loja loja, Venda venda) throws VendaException {
+        try {
+            for (Produto produto : venda.getProdutos()) {
+                ItemEstoque estoque = this.getEstoqueDoProduto(loja, produto);
+                if ((estoque == null)) {
+                    throw new VendaException("Produto não existe no estoque.");
+                } else if ((estoque.getQuant() <= 0)) {
+                    throw new VendaException("Produto não tem estoque");
+                }
+
+                // Contabiliza o preço do produto... não remover
+                venda.setValor(venda.getValor() + produto.getPreco());
+            }
+            
+            // Persiste venda
+            this.repositorioVenda.save(venda);
+            
+            // Persiste usuário
+            venda.getUsuario().getVendas().add(venda);
+            this.repositorioUsuario.save(venda.getUsuario());
+            
+            // Persiste loja
+            loja.getVendas().add(venda);
+            this.repositorioLoja.save(loja);
+            
+            log.info("Venda " + venda.getId() + " realizada, caixa: " + venda.getValor());
+        } catch (VendaException e) {
+            log.error(e.getMessage());
+        }
     }
     
 }

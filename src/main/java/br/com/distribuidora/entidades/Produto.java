@@ -30,6 +30,7 @@ public class Produto implements Serializable{
     private String nome;
     private String marca;
     private Float pesoMl;
+    private Float preco;
     private Date validade;
     private Date fabricacao;
     private String caracteristicas;
@@ -37,8 +38,8 @@ public class Produto implements Serializable{
     private List<Fornecedor> fornecedores;
     
     public Produto(){
-    
-}
+        this.fornecedores = new ArrayList<Fornecedor>();
+    }
     
     public Produto(String nome, String marca, Float pesoMl, Date validade, Date fabricacao, String caracteristicas, String codigoBarra, List<Fornecedor> fornecedores){
         this.nome=nome;
@@ -145,6 +146,15 @@ public class Produto implements Serializable{
     public void setPesoMl(Float pesoMl) {
         this.pesoMl = pesoMl;
     }
+    
+    public Float getPreco() {
+        return preco;
+    }
+    
+    public void setPreco(Float preco) {
+        this.preco = preco;
+    }
+    
      @DateTimeFormat(pattern = "dd/MM/yyyy")
      @Temporal(TemporalType.DATE)
     public Date getValidade() {
