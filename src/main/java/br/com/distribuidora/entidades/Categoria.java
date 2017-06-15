@@ -72,7 +72,7 @@ public class Categoria implements Serializable{
     }
 
      @Override
-    public String toString() {
+    public String toString() { 
         return "Categoria{" + "id=" + id + ", nome=" + nome + ", produtos=" + produtos + ", quant=" + quant + '}';
     }
     
