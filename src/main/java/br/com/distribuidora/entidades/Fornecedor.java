@@ -1,7 +1,4 @@
-
 package br.com.distribuidora.entidades;
-
-
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,6 +10,7 @@ import javax.persistence.Id;
 /**
  *
  * @author Patricia
+ * @modified Luan
  */
 @Entity
 public class Fornecedor implements Serializable{

@@ -16,9 +16,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  *
  * @author Patricia
+ * @modified Luan
  */
 @Entity
 public class Usuario implements Serializable{
@@ -36,7 +38,7 @@ public class Usuario implements Serializable{
     private Date dataDemissao;
     
     public Usuario() {
-        
+        this.vendas = new ArrayList<Venda>();
     }
 
     public Usuario(String nome, String cpf, String telefone, String email, String endereco, String funcao, Float  salario, List<Venda> vendas, Date dataAdmissao, Date dataDemissao){

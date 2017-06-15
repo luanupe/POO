@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 /**
  *
  * @author Patricia
+ * @modified Luan
  */
 @Entity
 public class Categoria implements Serializable{
@@ -27,7 +28,7 @@ public class Categoria implements Serializable{
     private int quant;
 
     public Categoria() {
-     
+        this.produtos = new ArrayList<Produto>();
     }
     
     public Categoria(String nome, List<Produto> produtos, int quant) {

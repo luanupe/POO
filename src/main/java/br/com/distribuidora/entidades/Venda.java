@@ -1,7 +1,4 @@
-
 package br.com.distribuidora.entidades;
-
-
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  *
  * @author Patricia

@@ -1,7 +1,4 @@
-
 package br.com.distribuidora.entidades;
-
-
 
 import java.io.Serializable;
 import java.util.ArrayList;

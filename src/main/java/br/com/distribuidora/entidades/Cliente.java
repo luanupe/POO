@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 /**
  *
  * @author Patricia
+ * @modified Luan
  */
 @Entity
 public class Cliente implements Serializable{
@@ -27,8 +28,8 @@ public class Cliente implements Serializable{
     private String endereco;
     private List<Venda> vendas;
     
-    public Cliente(){
-       
+    public Cliente() {
+        this.vendas = new ArrayList<Venda>();
     }
 
     public Cliente(String nome, String telefone, String email, String cpfCnpj, String endereco, List<Venda> vendas) {
