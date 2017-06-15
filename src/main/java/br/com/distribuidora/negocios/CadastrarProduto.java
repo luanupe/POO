@@ -1,14 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.distribuidora.negocios;
+
+import br.com.distribuidora.entidades.Produto;
+import java.io.Serializable;
 
 /**
  *
  * @author Patricia
  */
-public interface CadastrarProduto {
+public interface CadastrarProduto extends Serializable{
     
+    //public void adicionarProduto (Produto produto,String nome) throws ProdutoExistenteException;
+    
+    public void removerProduto(String codigoDeBarra) throws ProdutoInexistenteException;
+    
+    public Produto buscarProduto(String codigoDeBarra) throws ProdutoInexistenteException;
+    
+   
 }

@@ -1,14 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.distribuidora.negocios;
+
+import br.com.distribuidora.entidades.ItemEstoque;
+import java.io.Serializable;
 
 /**
  *
  * @author Patricia
  */
-public interface CadastrarItemEstoque {
+public interface CadastrarItemEstoque extends Serializable{
     
+    public void adicionarItemEstoque(ItemEstoque itemEstoque) throws ItemEstoqueExistenteException;
+    
+    public ItemEstoque buscarItemEstoque(String codigoBarra) throws ItemEstoqueInexistenteException;
+      
 }

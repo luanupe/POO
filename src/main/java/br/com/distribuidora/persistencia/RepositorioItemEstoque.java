@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RepositorioItemEstoque extends CrudRepository<ItemEstoque, Long>{
-    public ItemEstoque findByIdServico (Long id);
+    public ItemEstoque findByProdutoCodigo (String codigoBarra);
      
 }
