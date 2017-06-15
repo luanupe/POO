@@ -6,6 +6,7 @@ import br.com.distribuidora.entidades.Loja;
 import br.com.distribuidora.entidades.Produto;
 import br.com.distribuidora.entidades.Venda;
 import br.com.distribuidora.persistencia.RepositorioCliente;
+import br.com.distribuidora.persistencia.RepositorioItemEstoque;
 import br.com.distribuidora.persistencia.RepositorioLoja;
 import br.com.distribuidora.persistencia.RepositorioUsuario;
 import br.com.distribuidora.persistencia.RepositorioVenda;
@@ -37,6 +38,9 @@ public class CadastrarLojaImp implements CadastrarLoja {
 
     @Autowired
     private RepositorioCliente repositorioCliente;
+
+    @Autowired
+    private RepositorioItemEstoque repositorioItemEstoque;
 
     @Override
     @Transactional(rollbackFor = LojaExistenteException.class)
@@ -98,6 +102,12 @@ public class CadastrarLojaImp implements CadastrarLoja {
                 } else if ((estoque.getQuant() <= 0)) {
                     throw new VendaException("Produto não tem estoque");
                 }
+                
+                // Reduz o estoque do produto
+                estoque.setQuant(estoque.getQuant() - 1);
+                
+                // Salva o estque do loop atual
+                this.repositorioItemEstoque.save(estoque);
 
                 // Contabiliza o preço do produto... não remover
                 venda.setValor(venda.getValor() + produto.getPreco());
