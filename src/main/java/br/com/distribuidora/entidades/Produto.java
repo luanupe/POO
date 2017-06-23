@@ -192,7 +192,7 @@ public class Produto implements Serializable{
         this.codigoBarra = codigoBarra;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     public List<Fornecedor> getFornecedores() {
         return fornecedores;
     }

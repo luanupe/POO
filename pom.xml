@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.3.RELEASE</version>
+		<version>1.5.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -24,25 +24,17 @@
 		<java.version>1.8</java.version>
 	</properties>
 
-<!-- dependencias do rabbitMQ
-
--->
 	<dependencies>
-         
-		<!-- Compile -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
-                
-                
-<!--termina aqui as dependencias do rabbitMQ
--->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+                
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -58,36 +50,38 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+                
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+                
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
                 
-                <!--excluindo o tomcat e adicionando a dependencia do jetty
-                -->
+                <!-- excluindo o tomcat e adicionando a dependencia do jetty -->
+                
                 <dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-web</artifactId>
-	<exclusions>
-		<exclusion>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-		</exclusion>
-	</exclusions>
-</dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-web</artifactId>
+                        <exclusions>
+                                <exclusion>
+                                        <groupId>org.springframework.boot</groupId>
+                                        <artifactId>spring-boot-starter-tomcat</artifactId>
+                                </exclusion>
+                        </exclusions>
+                </dependency>
 
-<dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-jetty</artifactId>
-</dependency>
- <!-- aqui termina o que adicionei sobre a dependencia do jetty 
- -->               
+                <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-jetty</artifactId>
+                </dependency>
+                
+                <!-- aqui termina o que adicionei sobre a dependencia do jetty -->               
 	</dependencies>
 
 	<build>
@@ -98,6 +92,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>

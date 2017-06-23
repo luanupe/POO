@@ -45,7 +45,7 @@ public class CadastrarProdutoImp implements CadastrarProduto{
     @Override
     @Transactional(rollbackFor = ProdutoInexistenteException.class)
     public Produto buscarProduto(String codigoDeBarra) throws ProdutoInexistenteException {
-        Produto produto = this.repositorioProduto.findByCodigoProduto(codigoDeBarra);
+        Produto produto = this.repositorioProduto.findByCodigoBarra(codigoDeBarra);
         if ((produto == null)) {
             throw new ProdutoInexistenteException("Produto " + codigoDeBarra + " não existe.");
         }

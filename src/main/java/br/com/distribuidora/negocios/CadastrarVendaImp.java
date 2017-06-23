@@ -47,7 +47,7 @@ public class CadastrarVendaImp implements CadastrarVenda{
     @Override
     @Transactional(rollbackFor = VendaInexistenteException.class)
      public Venda buscarVenda(Long id) throws VendaInexistenteException {
-        Venda venda = this.repositorioVenda.findByIdVenda(id);
+        Venda venda = this.repositorioVenda.findById(id);
         if ((venda == null)) {
             throw new VendaInexistenteException("Venda " + id + " não existe.");
         }

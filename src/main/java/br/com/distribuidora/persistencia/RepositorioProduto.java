@@ -16,6 +16,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RepositorioProduto extends CrudRepository<Produto, Long>{
     //public Produto findByIdProduto (Long id);
-    public Produto findByCodigoProduto (String codigoBarra);
+    public Produto findByCodigoBarra (String codigoBarra);
     
 }

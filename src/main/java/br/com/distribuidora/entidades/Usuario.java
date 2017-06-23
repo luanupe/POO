@@ -190,7 +190,7 @@ public class Usuario implements Serializable{
         this.salario = salario;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy ="usuario")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy ="usuario")
     public List<Venda> getVendas() {
         return vendas;
     }

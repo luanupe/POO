@@ -46,7 +46,7 @@ public class CadastrarItemEstoqueImp implements CadastrarItemEstoque{
     @Override
     @Transactional(rollbackFor = ItemEstoqueInexistenteException.class)
     public ItemEstoque buscarItemEstoque(String codigoBarra) throws ItemEstoqueInexistenteException{
-          ItemEstoque itemEstoque = this.repositorioItemEstoque.findByProdutoCodigo(codigoBarra);
+          ItemEstoque itemEstoque = this.repositorioItemEstoque.findByCodigoBarra(codigoBarra);
         if ((itemEstoque == null)) {
             throw new ItemEstoqueInexistenteException("produto" + itemEstoque.getProduto() + " não existe.");
         }

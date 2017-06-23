@@ -95,7 +95,7 @@ public class ItemEstoque implements Serializable{
         this.quant = quant;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy ="itemEstoque")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy ="item")
     public List<EventoEstoque> getEventos() {
         return eventos;
     }

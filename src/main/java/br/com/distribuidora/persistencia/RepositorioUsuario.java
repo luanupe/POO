@@ -16,5 +16,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RepositorioUsuario extends CrudRepository<Usuario, Long>{
    
-    public Usuario findByCpfCnpj(String cpfCnpj);
+    public Usuario findByCpf(String cpfCnpj);
 }

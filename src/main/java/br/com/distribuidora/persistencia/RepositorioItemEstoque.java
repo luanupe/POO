@@ -6,6 +6,7 @@
 package br.com.distribuidora.persistencia;
 
 import br.com.distribuidora.entidades.ItemEstoque;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RepositorioItemEstoque extends CrudRepository<ItemEstoque, Long>{
-    public ItemEstoque findByProdutoCodigo (String codigoBarra);
+    @Query("select ie.produto.codigoBarra from ItemEstoque ie where ie.produto.codigoBarra = :codigoBarra")
+    public ItemEstoque findByCodigoBarra (String codigoBarra);
      
 }

@@ -61,7 +61,7 @@ public class CadastrarUsuarioImp implements CadastrarUsuario {
     @Override
     @Transactional(rollbackFor = UsuarioInexistenteException.class)
     public Usuario buscarUsuario(String cpf) throws UsuarioInexistenteException {
-        Usuario usuario = this.repositorioUsuario.findByCpfCnpj(cpf);
+        Usuario usuario = this.repositorioUsuario.findByCpf(cpf);
         if ((usuario == null)) {
             this.log.error("Usuário " + cpf + " não existe, excessão...");
             throw new UsuarioInexistenteException("Usuário " + cpf + " não foi encontrado.");

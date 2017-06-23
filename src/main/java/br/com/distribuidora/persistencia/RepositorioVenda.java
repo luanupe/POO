@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RepositorioVenda extends CrudRepository<Venda, Long>{
-    public Venda findByIdVenda(Long id);
+    public Venda findById(Long id);
     
 }

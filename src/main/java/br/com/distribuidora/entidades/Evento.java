@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -21,6 +23,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @modified Luan
  */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Evento implements Serializable {
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -101,6 +104,10 @@ public abstract class Evento implements Serializable {
         return id;
     }
 
+    public void setSubcribers(List<Usuario> subcribers) {
+        this.subcribers = subcribers;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -132,7 +139,7 @@ public abstract class Evento implements Serializable {
         this.encaminhamentos = encaminhamentos;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     public List<Usuario> getSubcribers() {
         return this.subcribers;
     }

@@ -154,7 +154,7 @@ public class Pedido implements Serializable {
     }
 
     // Pra que serve esse mappedBy?
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "Pedido")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pedido", targetEntity = Evento.class)
     public List<EventoPedido> getEventos() {
         return this.eventos;
     }

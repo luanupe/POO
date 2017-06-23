@@ -167,7 +167,7 @@ public class Loja implements Serializable{
         this.estoque = estoque;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     public List<Venda> getVendas() {
         return vendas;
     }
@@ -176,7 +176,7 @@ public class Loja implements Serializable{
         this.vendas = vendas;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
