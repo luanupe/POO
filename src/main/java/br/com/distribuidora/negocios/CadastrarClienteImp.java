@@ -4,6 +4,7 @@ package br.com.distribuidora.negocios;
 import br.com.distribuidora.entidades.Cliente;
 import br.com.distribuidora.persistencia.RepositorioCliente;
 import org.springframework.stereotype.Service;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,13 @@ public class CadastrarClienteImp implements CadastrarCliente{
        clienteAntigo.setTelefone(cliente.getTelefone());
        
        repositorioCliente.save(clienteAntigo);
+
+    }
+    
+    @Override
+    public List<Cliente> listarCliente() {
+
+        return (List<Cliente> ) repositorioCliente.findAll();
 
     }
 }

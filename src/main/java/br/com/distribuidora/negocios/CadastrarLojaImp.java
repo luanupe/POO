@@ -95,6 +95,7 @@ public class CadastrarLojaImp implements CadastrarLoja {
     @Transactional(rollbackFor = VendaException.class)
     public void vender(Loja loja, Venda venda) throws VendaException {
         try {
+         
             for (Produto produto : venda.getProdutos()) {
                 ItemEstoque estoque = this.getEstoqueDoProduto(loja, produto);
                 if ((estoque == null)) {

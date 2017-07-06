@@ -3,6 +3,7 @@ package br.com.distribuidora.negocios;
 
 import br.com.distribuidora.entidades.Produto;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -10,11 +11,15 @@ import java.io.Serializable;
  */
 public interface CadastrarProduto extends Serializable{
     
-    //public void adicionarProduto (Produto produto,String nome) throws ProdutoExistenteException;
+    public void adicionarProduto (Produto produto) throws ProdutoExistenteException;
     
     public void removerProduto(String codigoDeBarra) throws ProdutoInexistenteException;
     
     public Produto buscarProduto(String codigoDeBarra) throws ProdutoInexistenteException;
     
-   
+    public List<Produto> listarProduto();
+    
+    public void atualizarProduto (Produto produto) throws ProdutoInexistenteException;
 }
+   
+
