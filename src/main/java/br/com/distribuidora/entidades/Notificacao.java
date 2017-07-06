@@ -19,8 +19,6 @@ public class Notificacao {
     private Usuario usuario;
     private String descricao;
     private boolean lido;
-    
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dataNotificacao;
     
     public Notificacao() {
@@ -114,6 +112,7 @@ public class Notificacao {
         this.lido = lido;
     }
 
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     public Date getDataNotificacao() {
         return dataNotificacao;
     }
