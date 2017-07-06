@@ -5,6 +5,7 @@ import br.com.distribuidora.entidades.ItemEstoque;
 import br.com.distribuidora.entidades.Produto;
 import br.com.distribuidora.persistencia.RepositorioItemEstoque;
 import br.com.distribuidora.persistencia.RepositorioProduto;
+import java.util.List;
 import java.util.logging.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CadastrarItemEstoqueImp implements CadastrarItemEstoque{
     
-     private static final Logger log = LoggerFactory.getLogger(CadastrarLojaImp.class);
+    private static final Logger log = LoggerFactory.getLogger(CadastrarLojaImp.class);
     
     @Autowired
     private RepositorioItemEstoque repositorioItemEstoque;
@@ -46,12 +47,18 @@ public class CadastrarItemEstoqueImp implements CadastrarItemEstoque{
     @Override
     @Transactional(rollbackFor = ItemEstoqueInexistenteException.class)
     public ItemEstoque buscarItemEstoque(String codigoBarra) throws ItemEstoqueInexistenteException{
-          ItemEstoque itemEstoque = this.repositorioItemEstoque.findByCodigoBarra(codigoBarra);
+        ItemEstoque itemEstoque = this.repositorioItemEstoque.findByCodigoBarra(codigoBarra);
         if ((itemEstoque == null)) {
             throw new ItemEstoqueInexistenteException("produto" + itemEstoque.getProduto() + " não existe.");
         }
          return itemEstoque;
     }
 
+    @Override
+    public List<ItemEstoque> listarEstoque() {
+
+        return (List<ItemEstoque> ) repositorioItemEstoque.findAll();
+
+    }
     }
        

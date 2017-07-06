@@ -3,6 +3,7 @@ package br.com.distribuidora.negocios;
 
 import br.com.distribuidora.entidades.ItemEstoque;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -14,4 +15,5 @@ public interface CadastrarItemEstoque extends Serializable{
     
     public ItemEstoque buscarItemEstoque(String codigoBarra) throws ItemEstoqueInexistenteException;
       
+    public List<ItemEstoque> listarEstoque();
 }
