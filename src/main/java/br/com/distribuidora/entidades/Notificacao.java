@@ -1,5 +1,7 @@
 package br.com.distribuidora.entidades;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -17,19 +19,21 @@ public class Notificacao {
 
     private Long id;
     private Usuario usuario;
-    private String descricao;
-    private boolean lido;
+    
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dataNotificacao;
+    private boolean lido;
+    private Evento evento;
     
     public Notificacao() {
         
     }
 
-    public Notificacao(Usuario usuario, String descricao, boolean lido, Date dataNotificacao) {
+    public Notificacao(Usuario usuario, boolean lido, Date dataNotificacao, Evento evento) {
         this.usuario = usuario;
-        this.descricao = descricao;
         this.lido = lido;
         this.dataNotificacao = dataNotificacao;
+        this.evento = evento;
     }
     
     @Override
@@ -37,7 +41,6 @@ public class Notificacao {
         int hash = 3;
         hash = 67 * hash + Objects.hashCode(this.getId());
         hash = 67 * hash + Objects.hashCode(this.getUsuario());
-        hash = 67 * hash + Objects.hashCode(this.getDescricao());
         hash = 67 * hash + Objects.hashCode(this.isLido());
         hash = 67 * hash + Objects.hashCode(this.getDataNotificacao());
         return hash;
@@ -58,9 +61,6 @@ public class Notificacao {
         if (this.lido != other.lido) {
             return false;
         }
-        if (!Objects.equals(this.descricao, other.descricao)) {
-            return false;
-        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -75,7 +75,7 @@ public class Notificacao {
 
     @Override
     public String toString() {
-        return "Notificacao{" + "id=" + id + ", usuario=" + usuario + ", descricao=" + descricao + ", lido=" + lido + ", data=" + dataNotificacao + '}';
+        return "Notificacao{" + "id=" + id + ", usuario=" + usuario + ", lido=" + lido + ", data=" + dataNotificacao + '}';
     }
 
     @Id
@@ -96,14 +96,6 @@ public class Notificacao {
         this.usuario = usuario;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public boolean isLido() {
         return lido;
     }
@@ -112,7 +104,6 @@ public class Notificacao {
         this.lido = lido;
     }
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     public Date getDataNotificacao() {
         return dataNotificacao;
     }
@@ -121,4 +112,11 @@ public class Notificacao {
         this.dataNotificacao = dataNotificacao;
     }
     
+    public Evento getEvento() {
+        return this.evento;
+    }
+    
+    public void setEvento(Evento evento) {
+        this.evento = evento;
+    }
 }

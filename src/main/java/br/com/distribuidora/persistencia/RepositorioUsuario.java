@@ -6,6 +6,7 @@
 package br.com.distribuidora.persistencia;
 
 import br.com.distribuidora.entidades.Usuario;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,4 +18,7 @@ import org.springframework.stereotype.Repository;
 public interface RepositorioUsuario extends CrudRepository<Usuario, Long>{
    
     public Usuario findByCpf(String cpfCnpj);
+    
+    public List<Usuario> findByFuncao(String funcao);
+    
 }

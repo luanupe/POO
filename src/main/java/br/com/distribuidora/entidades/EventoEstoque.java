@@ -19,7 +19,7 @@ public class EventoEstoque extends Evento {
         super();
     }
     
-    public EventoEstoque(ItemEstoque item, int quantidade, Pedido pedido, List<Encaminhamento> encaminhamentos, Usuario responsavel, List<Usuario> subcribes){
+    public EventoEstoque(ItemEstoque item, int quantidade, Pedido pedido, Usuario responsavel, List<Encaminhamento> encaminhamentos, List<Usuario> subcribes){
         super(responsavel, pedido, encaminhamentos, subcribes);
         this.item = item;
         this.quantidade = quantidade;
