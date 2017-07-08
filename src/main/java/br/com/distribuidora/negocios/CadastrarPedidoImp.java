@@ -51,25 +51,21 @@ public class CadastrarPedidoImp implements CadastrarPedido {
 
     @Override
     public List<Pedido> listarPedido() {
-        
     return (List<Pedido> ) repositorioPedido.findAll();
-
     }
 
     @Override
     @Transactional(rollbackFor = PedidoInexistenteException.class)
     public void atualizarPedido(Pedido pedido) throws PedidoInexistenteException {
-    
-    Pedido pedidoAntigo = buscarPedido(pedido.getId());
-       
-       pedidoAntigo.setDataPedido(pedido.getDataPedido());
-       pedidoAntigo.setFornecedor(pedido.getFornecedor());
-       pedidoAntigo.setPrevisao(pedido.getPrevisao());
-       pedidoAntigo.setEventos(pedido.getEventos());
-       pedidoAntigo.setStatus(pedido.getStatus());
-       pedidoAntigo.setValor(pedido.getValor());
-       
-       repositorioPedido.save(pedidoAntigo);
+        Pedido pedidoAntigo = buscarPedido(pedido.getId());
+        pedidoAntigo.setDataPedido(pedido.getDataPedido());
+        pedidoAntigo.setFornecedor(pedido.getFornecedor());
+        pedidoAntigo.setPrevisao(pedido.getPrevisao());
+        pedidoAntigo.setEventos(pedido.getEventos());
+        pedidoAntigo.setStatus(pedido.getStatus());
+        pedidoAntigo.setValor(pedido.getValor());
+        
+        repositorioPedido.save(pedidoAntigo);
         
     }
     

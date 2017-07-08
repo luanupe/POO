@@ -14,8 +14,8 @@ public class EventoPedido extends Evento {
         super();
     }
 
-    public EventoPedido(Pedido pedido, List<Encaminhamento> encaminhamentos, Usuario responsavel, List<Usuario> subcribes){
-        super(responsavel, pedido, encaminhamentos, subcribes);
+    public EventoPedido(Pedido pedido, Usuario responsavel, List<Encaminhamento> encaminhamentos, List<Usuario> subcribers){
+        super(responsavel, pedido, encaminhamentos, subcribers);
     }
 
 }
