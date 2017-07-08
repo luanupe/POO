@@ -51,7 +51,9 @@ public class CadastrarPedidoImp implements CadastrarPedido {
 
     @Override
     public List<Pedido> listarPedido() {
-    return (List<Pedido> ) repositorioPedido.findAll();
+        
+        return (List<Pedido> ) repositorioPedido.findAll();
+
     }
 
     @Override
