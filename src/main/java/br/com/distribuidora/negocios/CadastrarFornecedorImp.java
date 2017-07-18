@@ -66,7 +66,7 @@ public class CadastrarFornecedorImp implements CadastrarFornecedor{
     }
 
     @Override
-    @Transactional(rollbackFor = LojaInexistenteException.class)
+    @Transactional(rollbackFor = FornecedorInexistenteException.class)
     public Fornecedor buscarFornecedor(String cnpj) throws FornecedorInexistenteException {
      Fornecedor fornecedor = this.repositorioFornecedor.findByCnpj(cnpj);
         if ((fornecedor == null)) {
