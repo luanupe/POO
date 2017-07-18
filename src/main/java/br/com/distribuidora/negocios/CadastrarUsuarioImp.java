@@ -8,6 +8,7 @@ package br.com.distribuidora.negocios;
 import br.com.distribuidora.entidades.Usuario;
 import br.com.distribuidora.persistencia.RepositorioUsuario;
 import java.util.Date;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,4 +70,10 @@ public class CadastrarUsuarioImp implements CadastrarUsuario {
         return usuario;
     }
     
+    @Override
+    public List<Usuario> listarUsuario() {
+        
+        return (List<Usuario> ) repositorioUsuario.findAll();
+
+    }
 }

@@ -24,10 +24,7 @@ public class CadastrarVendaImp implements CadastrarVenda{
     @Autowired
     private RepositorioVenda repositorioVenda;
     
-    public void adicionarVenda(Venda venda, Loja loja) {
-        
-    }
-    
+   
      @Override
     public List<Venda> listarVenda() {
             
