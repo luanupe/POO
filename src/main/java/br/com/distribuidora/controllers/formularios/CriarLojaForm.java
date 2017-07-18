@@ -1,76 +1,163 @@
 package br.com.distribuidora.controllers.formularios;
 
+import br.com.distribuidora.entidades.Loja;
+import br.com.distribuidora.entidades.Usuario;
+import java.util.Date;
+
 /**
  *
  * @author LAF
  */
 public class CriarLojaForm {
     
-    // Primeiro usuario
-    private String login;
-    private String senha;
+    // Dados do usuario
+    private String nomeUsuario;
+    private String cpfUsuario;
+    private String telefoneUsuario;
+    private String emailUsuario;
+    private String enderecoUsuario;
+    private String funcaoUsuario;
+    private Float salarioUsuario;
+    private Date dataAdmissaoUsuario;
     
     // Dados da loja
-    private String nome;
-    private String endereco;
-    private String cnpj;
-    private String telefone;
-    private String email;
+    private String nomeLoja;
+    private String enderecoLoja;
+    private String cnpjLoja;
+    private String telefoneLoja;
+    private String emailLoja;
 
-    public String getLogin() {
-        return login;
+    // Informações do usuário
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getCpfUsuario() {
+        return cpfUsuario;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setCpfUsuario(String cpfUsuario) {
+        this.cpfUsuario = cpfUsuario;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTelefoneUsuario() {
+        return telefoneUsuario;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTelefoneUsuario(String telefoneUsuario) {
+        this.telefoneUsuario = telefoneUsuario;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getEmailUsuario() {
+        return emailUsuario;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setEmailUsuario(String emailUsuario) {
+        this.emailUsuario = emailUsuario;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    public String getEnderecoUsuario() {
+        return enderecoUsuario;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+    public void setEnderecoUsuario(String enderecoUsuario) {
+        this.enderecoUsuario = enderecoUsuario;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getFuncaoUsuario() {
+        return funcaoUsuario;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setFuncaoUsuario(String funcaoUsuario) {
+        this.funcaoUsuario = funcaoUsuario;
     }
 
-    public String getEmail() {
-        return email;
+    public Float getSalarioUsuario() {
+        return salarioUsuario;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setSalarioUsuario(Float salarioUsuario) {
+        this.salarioUsuario = salarioUsuario;
+    }
+
+    public Date getDataAdmissaoUsuario() {
+        return dataAdmissaoUsuario;
+    }
+
+    public void setDataAdmissaoUsuario(Date dataAdmissaoUsuario) {
+        this.dataAdmissaoUsuario = dataAdmissaoUsuario;
+    }
+
+    // Informações da Loja
+
+    public String getNomeLoja() {
+        return nomeLoja;
+    }
+
+    public void setNomeLoja(String nomeLoja) {
+        this.nomeLoja = nomeLoja;
+    }
+
+    public String getEnderecoLoja() {
+        return enderecoLoja;
+    }
+
+    public void setEnderecoLoja(String enderecoLoja) {
+        this.enderecoLoja = enderecoLoja;
+    }
+
+    public String getCnpjLoja() {
+        return cnpjLoja;
+    }
+
+    public void setCnpjLoja(String cnpjLoja) {
+        this.cnpjLoja = cnpjLoja;
+    }
+
+    public String getTelefoneLoja() {
+        return telefoneLoja;
+    }
+
+    public void setTelefoneLoja(String telefoneLoja) {
+        this.telefoneLoja = telefoneLoja;
+    }
+
+    public String getEmailLoja() {
+        return emailLoja;
+    }
+
+    public void setEmailLoja(String emailLoja) {
+        this.emailLoja = emailLoja;
+    }
+
+    // Métodos auxiliares
+
+    public Usuario getUsuario() {
+        Usuario usuario = new Usuario();
+        usuario.setNome(this.getNomeUsuario());
+        usuario.setCpf(getCpfUsuario());
+        usuario.setTelefone(getTelefoneUsuario());
+        usuario.setEmail(getEmailUsuario());
+        usuario.setEndereco(getEnderecoUsuario());
+        usuario.setFuncao(getFuncaoUsuario());
+        usuario.setSalario(getSalarioUsuario());
+        usuario.setDataAdmissao(this.getDataAdmissaoUsuario());
+        return usuario;
+    }
+
+    public Loja getLoja() {
+        Loja loja = new Loja();
+        loja.setNome(this.getNomeLoja());
+        loja.setEndereco(this.getEnderecoLoja());
+        loja.setCnpj(this.getCnpjLoja());
+        loja.setTelefone(this.getTelefoneLoja());
+        loja.setEmail(this.getEmailLoja());
+        return loja;
     }
     
 }

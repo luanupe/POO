@@ -2,12 +2,15 @@ package br.com.distribuidora.controllers;
 
 import br.com.distribuidora.controllers.formularios.AutenticarForm;
 import br.com.distribuidora.entidades.Usuario;
+import br.com.distribuidora.negocios.CadastrarUsuario;
 import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import br.com.distribuidora.negocios.UsuarioInexistenteException;
 
 /**
  *
@@ -23,32 +26,32 @@ public class LoginController {
     }
 
     /* */
+    
+    @Autowired
+    private CadastrarUsuario negocioUsuario;
 
     @RequestMapping("/login")
     public String login(Model model) {
         if ((LoginController.usuario != null)) {
-            return "redirect:/loja";
+            return "redirect:/usuario";
         }
         
-        // TODO model.addAtributte(...)
+        model.addAttribute("formulario", new AutenticarForm());
         return "/login/autenticarform";
     }
 
     @RequestMapping(value = "/login/autenticar", method = RequestMethod.POST)
-    public String autenticar(@Valid AutenticarForm productForm, BindingResult bindingResult){
-        if ((bindingResult.hasErrors())) {
-            return "/login/autenticarform";
+    public String autenticar(@Valid AutenticarForm productForm, BindingResult bindingResult) {
+        try {
+            if ((bindingResult.hasErrors()) == false) {
+                LoginController.usuario = this.negocioUsuario.buscarUsuario(productForm.getLogin());
+                return "redirect:/loja";
+            }
+        } catch (UsuarioInexistenteException ex) {
+
         }
         
-        // Verifica login e senha
-        Usuario autenticado = null;
-        
-        if ((autenticado == null)) {
-            return "/login/autenticarform";
-        }
-        
-        LoginController.usuario = autenticado;
-        return "redirect:/loja";
+        return "/login/autenticarform";
     }
     
 }

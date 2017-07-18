@@ -4,7 +4,7 @@ package br.com.distribuidora.negocios;
  *
  * @author Patricia
  */
-class UsuarioInexistenteException extends Exception {
+public class UsuarioInexistenteException extends Exception {
 
     public UsuarioInexistenteException() {
         super();

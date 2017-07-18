@@ -16,6 +16,8 @@ public interface CadastrarLoja extends Serializable {
     
     public void removerLoja(String cnpj) throws LojaInexistenteException;
     
+    public Iterable<Loja> buscar();
+    
     public Loja buscarLoja(String cnpj) throws LojaInexistenteException;
 
     public void vender(Loja loja, Venda venda) throws VendaException;

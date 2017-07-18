@@ -10,6 +10,8 @@ import br.com.distribuidora.persistencia.RepositorioItemEstoque;
 import br.com.distribuidora.persistencia.RepositorioLoja;
 import br.com.distribuidora.persistencia.RepositorioUsuario;
 import br.com.distribuidora.persistencia.RepositorioVenda;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,6 +70,10 @@ public class CadastrarLojaImp implements CadastrarLoja {
             this.log.error("Loja " + cnpj + " não existe, não pode ser removida.");
             throw e;
         }
+    }
+    
+    public List<Loja> buscar() {
+        return new ArrayList<Loja>((Collection<Loja>) this.repositorioLoja.findAll());
     }
 
     @Override
