@@ -1,4 +1,3 @@
-
 package br.com.distribuidora.negocios;
 
 import br.com.distribuidora.entidades.Produto;
@@ -13,38 +12,36 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  *
  * @author Patricia
+ * @modified Luan
  */
 @Service
-public class CadastrarProdutoImp implements CadastrarProduto{
-  
+public class CadastrarProdutoImp implements CadastrarProduto {
+
     private static final Logger log = LoggerFactory.getLogger(CadastrarLojaImp.class);
 
-    
     @Autowired
     private RepositorioProduto repositorioProduto;
-    
-    
-     @Override
-     @Transactional(rollbackFor = ProdutoInexistenteException.class)
+
+    @Override
+    @Transactional(rollbackFor = ProdutoInexistenteException.class)
     public void adicionarProduto(Produto produto) throws ProdutoExistenteException {
         try {
             this.buscarProduto(produto.getCodigoBarra());
             this.log.error("Produto " + produto.getNome() + "com codigo de barra" + produto.getCodigoBarra() + "já existe.");
-            
+
             // ends
             throw new ProdutoExistenteException("Produto " + produto.getNome() + "com codigo de barra" + produto.getCodigoBarra() + "já existe.");
         } catch (ProdutoInexistenteException e) {
             this.repositorioProduto.save(produto);
             this.log.info("Produto " + produto.getNome() + "com codigo de barra" + produto.getCodigoBarra() + "cadastrado com sucesso");
-        } 
+        }
 
     }
-    
-    
+
     @Override
     @Transactional(rollbackFor = ProdutoInexistenteException.class)
     public void removerProduto(String codigoDeBarra) throws ProdutoInexistenteException {
-    try {
+        try {
             Produto produto = this.buscarProduto(codigoDeBarra);
             this.repositorioProduto.delete(produto);
             this.log.info("Produto " + codigoDeBarra + " foi removido.");
@@ -52,7 +49,7 @@ public class CadastrarProdutoImp implements CadastrarProduto{
             this.log.error("Produto " + codigoDeBarra + " não existe, não pode ser removido.");
             throw e;
         }
-    
+
     }
 
     @Override
@@ -68,29 +65,24 @@ public class CadastrarProdutoImp implements CadastrarProduto{
 
     @Override
     public List<Produto> listarProduto() {
-
-        return (List<Produto> ) repositorioProduto.findAll();
-
+        return (List<Produto>) repositorioProduto.findAll();
     }
-    
-    
+
     @Override
     @Transactional(rollbackFor = ProdutoInexistenteException.class)
-    public void atualizarProduto(Produto produto) throws ProdutoInexistenteException{
-        
-       Produto produtoAntigo = buscarProduto(produto.getCodigoBarra());
-       
-       produtoAntigo.setCaracteristicas(produto.getCaracteristicas());
-       produtoAntigo.setFabricacao(produto.getFabricacao());
-       produtoAntigo.setMarca(produto.getMarca());
-       produtoAntigo.setPesoMl(produto.getPesoMl());
-       produtoAntigo.setNome(produto.getNome());
-       produtoAntigo.setPreco(produto.getPreco());
-       produtoAntigo.setValidade(produto.getValidade());
-       produtoAntigo.setFornecedores(produto.getFornecedores());
-       
-       repositorioProduto.save( produtoAntigo);
-    }
-    
+    public void atualizarProduto(Produto produto) throws ProdutoInexistenteException {
+        Produto produtoAntigo = buscarProduto(produto.getCodigoBarra());
+
+        produtoAntigo.setCaracteristicas(produto.getCaracteristicas());
+        produtoAntigo.setFabricacao(produto.getFabricacao());
+        produtoAntigo.setMarca(produto.getMarca());
+        produtoAntigo.setPesoMl(produto.getPesoMl());
+        produtoAntigo.setNome(produto.getNome());
+        produtoAntigo.setPreco(produto.getPreco());
+        produtoAntigo.setValidade(produto.getValidade());
+        produtoAntigo.setFornecedores(produto.getFornecedores());
+
+        repositorioProduto.save(produtoAntigo);
     }
 
+}

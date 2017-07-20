@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lista de Produtos &middot; Distribuidora</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div>
+            <b>Menu: </b>
+            <a href="/usuario">Voltar</a> - 
+            <a href="/produto/criar">Novo Produto</a>
+        </div>
+        
+        <div>
+            <h2>Buscar Produto</h2>
+            <form method="POST" th:object="${produtoForm}" th:action="@{/produto/buscar}">
+                <table>
+                    <tr><th>Código de Barras: </th><th><input type="text" th:field="*{codigoBarra}" /></th></tr>
+                    <tr><th></th><th><input type="submit" value="Buscar Produto" /></th></tr>
+                </table>
+            </form>
+        </div>
+        
+        <div th:if="${not #lists.isEmpty(produtos)}">
+            <br /><h2>Lista de Produto</h2>
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>Marca</th>
+                    <th>Preço</th>
+                    <th>Ação</th>
+                </tr>
+                
+                <tr th:each="produto : ${produtos}">
+                    <th th:text="${produto.nome}"></th>
+                    <th th:text="${produto.marca}"></th>
+                    <th th:text="${produto.preco}"></th>
+                    <th><a th:href="${'/produto/editar/' + produto.codigoBarra}">Ver</a></th>
+                </tr>
+            </table>
+        </div>
+        
+        <div th:if="${#lists.isEmpty(produtos)}"><h2>Não há produtos cadastrados.</h2></div>
+    </body>
+</html>

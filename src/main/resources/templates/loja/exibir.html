@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Detalhes Loja &dot; Distribuidora</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div>
+            <b>Menu: </b>
+            <a href="/usuario/">Voltar</a> - <a href="/lojas/">Lojas</a>
+        </div>
+        
+        <div th:if="${loja}">
+            <h2>Detalhes da Loja</h2>
+            <table>
+                <tr><td><b>CNPJ: </b></td><td th:text="${loja.cnpj}"></td></tr>
+                <tr><td><b>Nome: </b></td><td th:text="${loja.nome}"></td></tr>
+                <tr><td><b>Endereço: </b></td><td th:text="${loja.endereco}"></td></tr>
+                <tr><td><b>Telefone: </b></td><td th:text="${loja.telefone}"></td></tr>
+                <tr><td><b>Funcionarios: </b></td><td th:text="${loja.usuarios.size()}"></td></tr>
+            </table>
+            
+            <div>
+                <h2>Realizar Venda</h2>
+                <div th:if="${#lists.isEmpty(clientes)}">Não há clientes registrados.</div>
+                <form th:if="${not #lists.isEmpty(clientes)}" th:object="${venderForm}" th:action="${'/loja/vender/' + loja.cnpj}" method="POST">
+                    <table>
+                        <input type="hidden" th:field="*{loja}" th:value="${loja.cnpj}" />
+                        <tr><th>Cliente: </th>
+                            <th>
+                                <select th:field="*{cliente}">
+                                    <option th:each="cliente : ${clientes}" th:value="${cliente.cpfCnpj}" th:text="${cliente.nome}"></option>
+                                </select>
+                            </th>
+                        </tr>
+                        <tr><th>Tipo: </th>
+                            <th>
+                                <select th:field="*{tipoPagamento}">
+                                    <option value="A vista">A vista</option>
+                                    <option value="Débito">Débito</option>
+                                    <option value="Crédito">Crédito</option>
+                                    <option value="Cheque">Cheque</option>
+                                </select>
+                            </th>
+                        </tr>
+                        <tr><th></th><th><input type="submit" value="Vender" /></th></tr>
+                    </table>
+                </form>
+            </div>
+            
+            <div th:if="${not #lists.isEmpty(loja.usuarios)}">
+                <br /><h2>Funcionários da Loja</h2>
+                <table>
+                    <tr>
+                        <th width="40%">CPF</th>
+                        <th width="40%">Nome</th>
+                        <th>Ação</th>
+                    </tr>
+                    
+                    <tr th:each="usuario : ${loja.usuarios}">
+                        <th th:text="${usuario.cpf}"></th>
+                        <th th:text="${usuario.nome}"></th>
+                        <th><a th:href="${'/usuario/perfil/' + usuario.cpf}">Ver</a></th>
+                    </tr>
+                </table>
+            </div>
+            
+            <div th:if="${not #lists.isEmpty(loja.vendas)}">
+                <br /><br /><h2>Lista de Vendas</h2>
+                <table>
+                    <tr>
+                        <th><b>#</b></th>
+                        <th><b>Cliente</b></th>
+                        <th><b>Vendedor</b></th>
+                        <th><b>Ação</b></th>
+                    </tr>
+                    <tr th:each="venda : ${loja.vendas}">
+                        <th th:text="${venda.id}"></th>
+                        <th th:text="${venda.cliente.nome}"></th>
+                        <th th:text="${venda.usuario.nome}"></th>
+                        <th><a th:href="${'/loja/venda/detalhe/' + venda.id}">Ver</a></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div th:if="${loja == null}"><h2>Essa loja não existe.</h2></div>
+    </body>
+</html>

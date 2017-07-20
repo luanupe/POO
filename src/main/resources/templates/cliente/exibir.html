@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Detalhes do Cliente &middot; Distribuidora</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div>
+            <b>Menu: </b>
+            <a href="/usuario">Perfil</a> - 
+            <a href="/clientes">Clientes</a> 
+        </div>
+        
+        <div>
+            <h2>Detalhes do Cliente <label th:text="${cliente.nome}"></label></h2>
+            <table>
+                <tr><th>ID: </th><th th:text="${cliente.cpfCnpj}"></th></tr>
+                <tr><th>Nome: </th><th th:text="${cliente.nome}"></th></tr>
+                <tr><th>Vendas: </th><th th:text="${cliente.vendas.size()}"></th></tr>
+            </table>
+        </div>
+        
+        <div th:if="${not #lists.isEmpty(cliente.vendas)}">
+            <h2>Vendas do Cliente</h2>
+            <table>
+                <tr>
+                    <th>Preço</th>
+                    <th>Vendedor</th>
+                    <th>Ação</th>
+                </tr>
+                
+                <tr th:each="venda : ${cliente.vendas}">
+                    <th th:text="${venda.valor}"></th>
+                    <th th:text="${venda.usuario.nome}"></th>
+                    <th>
+                        <a th:href="${'/venda/fical/' + venda.id}">Nota Fiscal</a>
+                        <a th:href="${'/venda/editar/' + venda.id}">Editar</a>
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

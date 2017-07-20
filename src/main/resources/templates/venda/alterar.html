@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Alterar Venda &middot; Distribuidora</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div>
+            <b>Menu:</b>
+            <a href="/usuario">Voltar</a> - 
+            <a href="/vendas">Vendas</a>
+        </div>
+        
+        <div th:if="${venda == null}"><h2>Não existe vendas com esse ID.</h2></div>
+        
+        <div th:if="${venda}">
+            <div>
+                <h2>Detalhes da venda:</h2>
+                <table>
+                    <tr><th>Cliente: </th><th th:text="${venda.cliente.nome}"></th></tr>
+                    <tr><th>Vendedor: </th><th th:text="${venda.usuario.nome}"></th></tr>
+                    <tr><th>Total: </th><th th:text="${'R$ ' + venda.valor}"></th></tr>
+                </table>
+            </div>
+            
+            <div th:if="${venda.checkout}">Venda concluída, não é possível alterar.</div>
+            <div th:if="${venda.checkout == false}">
+                <h2>Adicionar ao Carrinho</h2>
+                <div th:if="${#lists.isEmpty(produtos)}">Não há produtos disponíveis</div>
+                <form th:if="${not #lists.isEmpty(produtos)}" method="POST" th:object="${venderForm}" th:action="${'/venda/adicionar/' + venda.id}">
+                    <table>
+                        <tr>
+                            <th>Produto: </th>
+                            <th>
+                                <select th:field="*{produto}">
+                                    <option th:each="produto : ${produtos}" th:value="${produto.codigoBarra}" th:text="${produto.nome}"></option>
+                                </select>
+                            </th>
+                        </tr>
+                        <tr><th></th><th><input type="submit" value="Adicionar" /></th></tr>
+                    </table>
+                </form>
+                
+                <a th:href="${'/venda/checkout/' + venda.id}">Checkout</a>
+            </div>
+
+            <div>
+                <div th:if="${#lists.isEmpty(venda.produtos)}"><h2>Carrinho de compras vazio.</h2></div>
+                <div th:if="${not #lists.isEmpty(venda.produtos)}">
+                    <h2>Carrinho de Compras:</h2>
+                    <table>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Preço</th>
+                            <th>Ação</th>
+                        </tr>
+                        <tr th:each="produto : ${venda.produtos}">
+                            <th th:text="${produto.nome}"></th>
+                            <th th:text="${produto.preco}"></th>
+                            <th><a th:href="${'/venda/remover/' + venda.id + '/' + produto.codigoBarra}">Remover</a></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

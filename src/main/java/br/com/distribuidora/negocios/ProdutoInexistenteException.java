@@ -1,11 +1,10 @@
-
 package br.com.distribuidora.negocios;
 
 /**
  *
  * @author Patricia
  */
-class ProdutoInexistenteException extends Exception {
+public class ProdutoInexistenteException extends Exception {
     
     public ProdutoInexistenteException() {
         super();

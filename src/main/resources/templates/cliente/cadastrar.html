@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cadastrar Cliente &dot; Distribuidora</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div>
+            <b>Menu: </b>
+            <a href="/usuario">Voltar</a> - 
+            <a href="/clientes">Clientes</a> 
+        </div>
+        
+        <div>
+            <h2>Cadastrar Cliente</h2>
+            <form method="POST" th:object="${cadastrarForm}" th:action="@{/cliente/criar/validar}">
+                <table>
+                    <tr><th>CPF/CNPJ: </th><th><input type="text" th:field="*{cpfCnpj}" /></th></tr>
+                    <tr><th>Nome: </th><th><input type="text" th:field="*{nome}" /></th></tr>
+                    <tr><th>Email: </th><th><input type="text" th:field="*{email}" /></th></tr>
+                    <tr><th>Telefone: </th><th><input type="text" th:field="*{telefone}" /></th></tr>
+                    <tr><th>Endereço: </th><th><input type="text" th:field="*{endereco}" /></th></tr>
+                    <tr><th></th><th><input type="submit" value="Criar Cliente" /></th></tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>

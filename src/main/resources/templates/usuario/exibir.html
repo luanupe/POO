@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Detalhes Usuário &dot; Distribuidora</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div th:if="${usuario}">
+            <b>Menu: </b> 
+            <a href="/usuarios">Funcionários</a> - 
+            <a href="/clientes">Clientes</a> - 
+            <a href="/lojas">Lojas</a> - 
+            <a href="/produtos">Produtos</a> - 
+            <a href="/vendas">Vendas</a> - 
+            <a href="/logout/">Logout</a>
+            
+            <br /><h2>Detalhes do Usuário</h2>
+            
+            <div><b>CPF:</b> <label th:text="${usuario.cpf}" /></div>
+            <div><b>Nome:</b> <label th:text="${usuario.nome}" /></div>
+            <div><b>Salário: </b> <label th:text="${usuario.salario}" /></div>
+            <div><b>Cargo: </b> <label th:text="${usuario.funcao}" /></div>
+            
+            <div th:if="${not #lists.isEmpty(lojas)}">
+                <br /><h2>Funcionário das Lojas:</h2>
+                <table>
+                    <tr>
+                        <th><b>CNPJ</b></th>
+                        <th><b>Nome</b></th>
+                        <th><b>Ação</b></th>
+                    </tr>
+                    <tr th:each="loja : ${lojas}">
+                        <th th:text="${loja.cnpj}"></th>
+                        <th th:text="${loja.nome}"></th>
+                        <th><a th:href="${'/loja/detalhe/' + loja.cnpj}">Ver</a></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cadastrar Produto &dot; Distribuidora</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div>
+            <b>Menu: </b>
+            <a href="/usuario">Voltar</a> - 
+            <a href="/produtos">Produtos</a> 
+        </div>
+        
+        <div>
+            <h2>Cadastrar Produto</h2>
+            <form method="POST" th:object="${cadastrarForm}" th:action="@{/produto/criar/validar}">
+                <table>
+                    <tr><th>Nome: </th><th><input type="text" th:field="*{nome}" /></th></tr>
+                    <tr><th>Marca: </th><th><input type="text" th:field="*{marca}" /></th></tr>
+                    <tr><th>Peso: </th><th><input type="number" th:field="*{peso}" /></th></tr>
+                    <tr><th>Preço: </th><th><input type="number" th:field="*{preco}" /></th></tr>
+                    <tr><th>Fabricação: </th><th><input type="date" th:field="*{fabricacao}" /></th></tr>
+                    <tr><th>Validade: </th><th><input type="date" th:field="*{validade}" /></th></tr>
+                    <tr><th>Características: </th><th><input type="text" th:field="*{caracteristicas}" /></th></tr>
+                    <tr><th>Código de Barras: </th><th><input type="text" th:field="*{codigoBarra}" /></th></tr>
+                    <tr><th></th><th><input type="submit" value="Criar Produto" /></th></tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>

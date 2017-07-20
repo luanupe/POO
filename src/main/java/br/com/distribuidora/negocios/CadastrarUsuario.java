@@ -1,4 +1,3 @@
-
 package br.com.distribuidora.negocios;
 
 import br.com.distribuidora.entidades.Usuario;
@@ -17,6 +16,4 @@ public interface CadastrarUsuario {
     public Usuario buscarUsuario(String cpf) throws UsuarioInexistenteException;
     
     public List<Usuario> listarUsuario();
-
-   //public UsuarioListar buscarUsuario (String cpf) throws UsuarioInexistenteException;
 }

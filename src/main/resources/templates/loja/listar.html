@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Listar Lojas &dot; Distribuidora</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div>
+            <b>Menu: </b>
+            <a href="/usuario">Voltar</a> - 
+            <a href="/loja/criar">Criar Loja</a>
+        </div>
+        
+        <div th:if="${#lists.isEmpty(lojas)}"><h2>Nenhuma loja Cadastrada.</h2></div>
+        
+        <div th:if="${not #lists.isEmpty(lojas)}">
+            <h2>Lista de Lojas</h2>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>CNPJ</th>
+                    <th>Nome</th>
+                    <th>Endereço</th>
+                    <th>Email</th>
+                    <th>Ação</th>
+                </tr>
+                
+                <tr th:each="loja : ${lojas}">
+                    <th th:text="${loja.id}"></th>
+                    <th th:text="${loja.cnpj}"></th>
+                    <th th:text="${loja.nome}"></th>
+                    <th th:text="${loja.endereco}"></th>
+                    <th th:text="${loja.email}"></th>
+                    <th><a th:href="${'/loja/detalhe/' + loja.cnpj}">Detalhes</a></th>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

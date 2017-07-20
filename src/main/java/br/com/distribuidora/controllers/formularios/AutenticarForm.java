@@ -6,14 +6,14 @@ package br.com.distribuidora.controllers.formularios;
  */
 public class AutenticarForm {
 
-    private String login;
+    private String cpf;
 
-    public String getLogin() {
-        return login;
+    public String getCpf() {
+        return this.cpf;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
     
 }

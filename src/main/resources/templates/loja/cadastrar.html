@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Criar Loja &dot; Distribuidora</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div>
+            <div> <b>Menu: </b><a href="/usuario">Voltar</a> </div>
+            <h2>Criar uma Loja</h2>
+            
+            <form method="POST" th:object="${cadastrarForm}" th:action="@{/loja/criar/validar}">
+                <table>
+                    <tr> <th>CNPJ:</th>     <th><input type="text" th:field="*{cnpj}" /></th> </tr>
+                    <tr> <th>Nome:</th>     <th><input type="text" th:field="*{nome}" /></th> </tr>
+                    <tr> <th>Endereço:</th> <th><input type="text" th:field="*{endereco}" /></th> </tr>
+                    <tr> <th>Telefone:</th> <th><input type="text" th:field="*{telefone}" /></th> </tr>
+                    <tr> <th>Email:</th>    <th><input type="text" th:field="*{email}" /></th> </tr>
+                    <tr> <th> </th>         <th><input type="submit" value="Cadastrar Loja" /></th> </tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Detalhes do Produto &middot; Distribuidora</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div>
+            <b>Menu: </b>
+            <a href="/usuario">Voltar</a> - 
+            <a href="/produtos">Produtos</a> 
+        </div>
+        
+        <div th:if="${produto}">
+            <h2>Detalhes do Produto: <label></label></h2>
+            <table>
+                <tr><th>Nome: </th><th th:text="${produto.nome}"></th></tr>
+                <tr><th>Marca: </th><th th:text="${produto.marca}"></th></tr>
+                <tr><th>Preço: </th><th th:text="${produto.preco}"></th></tr>
+                <tr><th>Código: </th><th th:text="${produto.codigoBarra}"></th></tr>
+            </table>
+            
+            <div th:if="${not #lists.isEmpty(produtos)}">
+                <h2>Lista de Fornecedores:</h2>
+                <table>
+                    <tr>
+                        <th>CNPJ</th>
+                        <th>Fornecedor</th>
+                        <th>Email</th>
+                        <th>Ação</th>
+                    </tr>
+                    
+                    <tr th:each="fornecedor : ${produto.fornecedores}">
+                        <th th:text="${forcenedor.cnpj}"></th>
+                        <th th:text="${forcenedor.nome}"></th>
+                        <th th:text="${forcenedor}"></th>
+                        <th><a th:href="${'/fornecedor/editar/' + fornecedor.id}">Detalhes</a></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div th:if="${produto == null}"><h2>Não existe produto com esse código de barras.</h2></div>
+    </body>
+</html>

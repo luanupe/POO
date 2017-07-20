@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Listar Cliente &dot; Distribuidora</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div>
+            <b>Menu: </b>
+            <a href="/usuario">Voltar</a> - 
+            <a href="/cliente/criar">Novo Cliente</a>
+        </div>
+        
+        <div th:if="${#lists.isEmpty(clientes)}"><h2>Não há clientes cadastrados.</h2></div>
+        
+        <div th:if="${not #lists.isEmpty(clientes)}">
+            <h2>Clientes da Distribuídora</h2>
+            <table>
+                <tr>
+                    <th><b>CPF / CNPJ</b></th>
+                    <th><b>Nome</b></th>
+                    <th><b>Ação</b></th>
+                </tr>
+                
+                <tr th:each="cliente : ${clientes}">
+                    <th th:text="${cliente.cpfCnpj}"></th>
+                    <th th:text="${cliente.nome}"></th>
+                    <th><a th:href="${'/cliente/perfil/' + cliente.cpfCnpj}">Detalhes</a></th>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

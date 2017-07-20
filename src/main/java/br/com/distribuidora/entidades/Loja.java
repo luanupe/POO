@@ -105,7 +105,7 @@ public class Loja implements Serializable{
         return "Loja{" + "id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", cnpj=" + cnpj + ", telefone=" + telefone + ", email=" + email + ", estoque=" + estoque + ", vendas=" + vendas + ", usuarios=" + usuarios + '}';
     }
 
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;

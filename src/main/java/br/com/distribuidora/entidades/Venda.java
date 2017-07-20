@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -32,13 +31,14 @@ public class Venda implements Serializable{
     private Date dataEntrega;
     private Usuario usuario;
     private Cliente cliente;
+    private boolean checkout;
     private List<Produto> produtos;
     
     public Venda()  {
         this.produtos = new ArrayList<Produto>();
     }
 
-    public Venda(Date dataVenda,String tipoPagamento, Float valor, Date dataEntrega, Usuario usuario, Cliente cliente, List<Produto> produtos ){
+    public Venda(Date dataVenda,String tipoPagamento, Float valor, Date dataEntrega, Usuario usuario, Cliente cliente, List<Produto> produtos, boolean checkout){
        this.dataVenda=dataVenda;
        this.tipoPagamento=tipoPagamento;
        this.valor=valor;
@@ -46,7 +46,8 @@ public class Venda implements Serializable{
        this.usuario=usuario;
        this.cliente=cliente;
        this.produtos=produtos;
-    } 
+       this.checkout = checkout;
+    }
 
     @Override
     public int hashCode() {
@@ -59,6 +60,7 @@ public class Venda implements Serializable{
         hash = 83 * hash + Objects.hashCode(this.usuario);
         hash = 83 * hash + Objects.hashCode(this.cliente);
         hash = 83 * hash + Objects.hashCode(this.produtos);
+        hash = 83 * hash + Objects.hashCode(this.checkout);
         return hash;
     }
 
@@ -95,12 +97,15 @@ public class Venda implements Serializable{
         if (!Objects.equals(this.produtos, other.produtos)) {
             return false;
         }
+        if (!Objects.equals(this.checkout, other.checkout)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Venda{" + "id=" + id + ", dataVenda=" + dataVenda + ", tipoPagamento=" + tipoPagamento + ", valor=" + valor + ", dataEntrega=" + dataEntrega + ", usuario=" + usuario + ", cliente=" + cliente + ", produtos=" + produtos + '}';
+        return "Venda{" + "id=" + id + ", dataVenda=" + dataVenda + ", tipoPagamento=" + tipoPagamento + ", valor=" + valor + ", dataEntrega=" + dataEntrega + ", usuario=" + usuario + ", cliente=" + cliente + ", produtos=" + produtos + ", checkout=" + checkout + '}';
     }
 
     @Id
@@ -175,6 +180,13 @@ public class Venda implements Serializable{
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }
-    
+
+    public boolean isCheckout() {
+        return checkout;
+    }
+
+    public void setCheckout(boolean checkout) {
+        this.checkout = checkout;
+    }
  
 }

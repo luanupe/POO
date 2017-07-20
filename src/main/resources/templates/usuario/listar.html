@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Listar Usuários &dot; Distribuidora</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div> <b>Menu: </b><a href="/usuario">Voltar</a> </div>
+        
+        <div>
+            <h2>Lista de Usuários</h2>
+            <div th:if="${not #lists.isEmpty(usuarios)}">
+                <table>
+                    <tr>
+                        <th><b>CPF</b></th>
+                        <th><b>Nome</b></th>
+                        <th><b>Cargo</b></th>
+                        <th><b>Ação</b></th>
+                    </tr>
+                    
+                    <tr th:each="usuario : ${usuarios}">
+                        <th th:text="${usuario.cpf}"></th>
+                        <th th:text="${usuario.nome}"></th>
+                        <th th:text="${usuario.funcao}"></th>
+                        <th><a th:href="${'/usuario/perfil/' + usuario.cpf}">Detalhes</a></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

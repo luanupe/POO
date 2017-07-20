@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cadastrar Usuario &dot; Distribuidora</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div>
+            <div><b>Menu: </b> <a href="/login/">Login</a></div>
+            <h2>Cadastrar Usuário</h2>
+            
+            <form method="POST" th:object="${cadastrarForm}" th:action="@{/login/criar/validar}">
+                <table>
+                    <tr><th>Nome: </th><th><input type="text" th:field="*{nome}" /></th></tr>
+                    <tr><th>CPF: </th><th><input type="text" th:field="*{cpf}" /></th></tr>
+                    <tr><th>Telefone: </th><th><input type="text" th:field="*{telefone}" /></th></tr>
+                    <tr><th>Email: </th><th><input type="text" th:field="*{email}" /></th></tr>
+                    <tr><th>Endereço: </th><th><input type="text" th:field="*{endereco}" /></th></tr>
+                    <tr><th>Função: </th><th><input type="text" th:field="*{funcao}" /></th></tr>
+                    <tr><th>Salário: </th><th><input type="number" th:field="*{salario}" /></th></tr>
+                    <tr><th></th><th><input type="submit" value="Criar Usuário" /></th></tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>
