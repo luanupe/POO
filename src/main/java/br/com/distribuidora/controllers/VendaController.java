@@ -74,11 +74,10 @@ public class VendaController {
             model.addAttribute("venda", venda);
             model.addAttribute("produtos", disponiveis);
             model.addAttribute("venderForm", new VenderFormulario());
-            return "/venda/alterar";
         } catch (VendaInexistenteException ex) {
             
         }
-        return "redirect:/vendas";
+        return "/venda/alterar";
     }
     
     @RequestMapping(value = "/venda/adicionar/{id}", method = RequestMethod.POST)
@@ -111,6 +110,24 @@ public class VendaController {
             Venda venda = this.negocioVenda.buscarVenda(id);
             Produto produto = this.negocioProduto.buscarProduto(remover);
             this.negocioVenda.removerProduto(venda, produto);
+        } catch (Exception e) {
+            
+        }
+        return "redirect:/venda/editar/" + id;
+    }
+    
+    @RequestMapping(value = "/venda/checkout/{id}")
+    public String checkout(@PathVariable Long id, Model model) {
+        if ((LoginController.getUsuario() == null)) {
+            return "redirect:/login";
+        }
+
+        /* */
+
+        try {
+            Venda venda = this.negocioVenda.buscarVenda(id);
+            venda.setCheckout(true);
+            this.negocioVenda.atualizarVenda(venda);
         } catch (Exception e) {
             
         }

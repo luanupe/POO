@@ -12,7 +12,7 @@
             <a href="/vendas">Vendas</a>
         </div>
         
-        <div th:if="${venda == null}"><h2>Não existe vendas com esse ID.</h2></div>
+        <div th:unless="${venda}"><h2>Não existe vendas com esse ID.</h2></div>
         
         <div th:if="${venda}">
             <div>
@@ -24,7 +24,7 @@
                 </table>
             </div>
             
-            <div th:if="${venda.checkout}">Venda concluída, não é possível alterar.</div>
+            <div th:if="${venda.checkout}"><h3>Venda concretizada, não é possível alterar.</h3></div>
             <div th:if="${venda.checkout == false}">
                 <h2>Adicionar ao Carrinho</h2>
                 <div th:if="${#lists.isEmpty(produtos)}">Não há produtos disponíveis</div>
@@ -58,7 +58,10 @@
                         <tr th:each="produto : ${venda.produtos}">
                             <th th:text="${produto.nome}"></th>
                             <th th:text="${produto.preco}"></th>
-                            <th><a th:href="${'/venda/remover/' + venda.id + '/' + produto.codigoBarra}">Remover</a></th>
+                            <th>
+                                <label th:if="${venda.checkout}">PAGO!</label>
+                                <a th:unless="${venda.checkout}" th:href="${'/venda/remover/' + venda.id + '/' + produto.codigoBarra}">Remover</a>
+                            </th>
                         </tr>
                     </table>
                 </div>

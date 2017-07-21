@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
-        <div th:if="${usuario}">
+        <div>
             <b>Menu: </b> 
             <a href="/usuarios">Funcionários</a> - 
             <a href="/clientes">Clientes</a> - 
@@ -16,19 +16,24 @@
             <a href="/logout/">Logout</a>
             
             <br /><h2>Detalhes do Usuário</h2>
-            
-            <div><b>CPF:</b> <label th:text="${usuario.cpf}" /></div>
-            <div><b>Nome:</b> <label th:text="${usuario.nome}" /></div>
-            <div><b>Salário: </b> <label th:text="${usuario.salario}" /></div>
-            <div><b>Cargo: </b> <label th:text="${usuario.funcao}" /></div>
+        </div>
+        
+        <div th:unless="${usuario}"><h2>Não existe funcionários com esse CPF.</h2></div>
+        <div th:if="${usuario}">    
+            <table>
+                <tr><th>CPF: </th><th th:text="${usuario.cpf}"></th></tr>
+                <tr><th>Nome: </th><th th:text="${usuario.nome}"></th></tr>
+                <tr><th>Salário: </th><th th:text="${usuario.salario}"></th></tr>
+                <tr><th>Cargo: </th><th th:text="${usuario.funcao}"></th></tr>
+            </table>
             
             <div th:if="${not #lists.isEmpty(lojas)}">
-                <br /><h2>Funcionário das Lojas:</h2>
+                <br /><h2>Trablha nas Lojas:</h2>
                 <table>
                     <tr>
-                        <th><b>CNPJ</b></th>
-                        <th><b>Nome</b></th>
-                        <th><b>Ação</b></th>
+                        <th style="width:150px;"><b>CNPJ</b></th>
+                        <th style="width:150px;"><b>Nome</b></th>
+                        <th style="width:50px;"><b>Ação</b></th>
                     </tr>
                     <tr th:each="loja : ${lojas}">
                         <th th:text="${loja.cnpj}"></th>

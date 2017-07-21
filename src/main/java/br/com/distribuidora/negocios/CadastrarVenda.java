@@ -18,6 +18,8 @@ public interface CadastrarVenda extends Serializable {
     
     public void removerProduto(Venda venda, Produto produto) throws VendaException;
     
+    public void atualizarVenda(Venda venda) throws VendaException;
+    
     public Venda buscarVenda(Long id) throws VendaInexistenteException;
     
     public List<Venda> listarVenda();

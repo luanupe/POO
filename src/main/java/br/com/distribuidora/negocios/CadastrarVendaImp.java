@@ -62,6 +62,12 @@ public class CadastrarVendaImp implements CadastrarVenda {
         }
         throw new VendaException("Esse produto não está no carrinho.");
     }
+    
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void atualizarVenda(Venda venda) throws VendaException {
+        this.repositorioVenda.save(venda);
+    }
 
     @Override
     public List<Venda> listarVenda() {

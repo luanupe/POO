@@ -86,7 +86,7 @@ public class ProdutoController {
             this.negocioProduto.adicionarProduto(produto);
             return "redirect:/produto/editar/" + produto.getCodigoBarra();
         } catch (ProdutoExistenteException e) {
-            e.printStackTrace();
+            
         }
         return "/produto/cadastrar";
     }
@@ -102,6 +102,7 @@ public class ProdutoController {
         try {
             Produto produto = this.negocioProduto.buscarProduto(id);
             model.addAttribute("produto", produto);
+            model.addAttribute("editarForm", new ProdutoCadastrarForm());
         } catch (ProdutoInexistenteException ex) {
             
         }
